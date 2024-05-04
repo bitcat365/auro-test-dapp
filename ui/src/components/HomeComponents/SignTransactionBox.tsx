@@ -81,14 +81,16 @@ export const SignTransactionBox = ({
       await zkappWorkerClient.setActiveInstanceToBerkeley(gqlUrl);
 
       const mina = (window as any).mina;
-
+      console.log("mina",mina);
       if (mina == null) {
         setState({ ...state, hasWallet: false });
         return;
       }
-
+      console.log("mina=1");
       const publicKeyBase58: string = (await mina.requestAccounts())[0];
+      console.log("mina=2",publicKeyBase58);
       const publicKey = PublicKey.fromBase58(publicKeyBase58);
+      console.log("mina=3",publicKey);
 
       console.log(`Using key:${publicKey.toBase58()}`);
       setDisplayText(`Using key:${publicKey.toBase58()}`);
@@ -99,8 +101,9 @@ export const SignTransactionBox = ({
       const res = await zkappWorkerClient.fetchAccount({
         publicKey: publicKey!,
       });
+      console.log("mina=4",res.account?.balance);
       const accountExists = res.error == null;
-
+      console.log("mina=5");
       await zkappWorkerClient.loadContract();
 
       console.log("Compiling zkApp...");
@@ -110,7 +113,7 @@ export const SignTransactionBox = ({
       setDisplayText("zkApp compiled...");
 
       const zkappPublicKey = PublicKey.fromBase58(zkAddress);
-
+      console.log("mina=6");
       await zkappWorkerClient.initZkappInstance(zkappPublicKey);
 
       console.log("Getting zkApp state...");
