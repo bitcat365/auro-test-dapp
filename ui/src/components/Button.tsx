@@ -45,7 +45,7 @@ export const StyledButton = styled.button`
 export type IButton ={
   children?:any
   disabled?:boolean
-  onClick:any,
+  onClick:(e:React.MouseEvent<HTMLElement>)=>{},
   checkInstall?:boolean 
 }
 export const Button = ({

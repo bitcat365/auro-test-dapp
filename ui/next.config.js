@@ -7,7 +7,7 @@ const nextConfig = {
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
-      // o1js: require('path').resolve('node_modules/o1js')
+      o1js: require('path').resolve('node_modules/o1js')
     };
     config.experiments = { ...config.experiments, topLevelAwait: true };
     config.optimization.minimizer = [];
@@ -50,7 +50,6 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  output:'export',
   // swcMinify: true,
 };
 
