@@ -159,6 +159,9 @@ export const SignTransactionBox = ({
 
         await zkappWorkerClient.loadContract();
 
+        try {
+          
+        
         console.log("Compiling zkApp...");
         setDisplayText("Compiling zkApp...");
         await zkappWorkerClient.compileContract();
@@ -187,6 +190,9 @@ export const SignTransactionBox = ({
 
         setUpdateBtnStatus(false);
         setInitBtnStatus(true);
+      } catch (error) {
+          
+      }
       }
     },
     [zkAddress, state, gqlUrl, isChecked,currentAccountTemp]
@@ -281,6 +287,9 @@ export const SignTransactionBox = ({
       const res = await zkappWorkerClient.fetchAccount({
         publicKey: publicKey!,
       });
+      try {
+        
+      
       await zkappWorkerClient.loadContract();
       console.log("Compiling zkApp...");
       setCreateText("Compiling zkApp...");
@@ -296,7 +305,10 @@ export const SignTransactionBox = ({
       const transactionJSON = await zkappWorkerClient.getTransactionJSON();
       setCreateText("waiting wallet confirm");
       console.log('transactionJSON',transactionJSON);
-      
+    } catch (error) {
+      console.log('transactionJSON=error',error);
+      console.log('transactionJSON=error=1',JSON.stringify(error));
+    }
       // const sendRes: SendTransactionResult | ProviderError = await (
       //   window as any
       // ).mina.sendTransaction({

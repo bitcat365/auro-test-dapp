@@ -45,8 +45,12 @@ const functions = {
     state.Add = Add;
   },
   compileContract: async (args: {}) => {
-    const { verificationKey } = await state.Add!.compile();
-    state.verificationKey = verificationKey;
+    try {
+      const { verificationKey } = await state.Add!.compile();
+      state.verificationKey = verificationKey;
+    } catch (error) {
+      throw Error(String(error))
+    }
   },
   fetchAccount: async (args: { publicKey58: string }) => {
     const publicKey = PublicKey.fromBase58(args.publicKey58);
