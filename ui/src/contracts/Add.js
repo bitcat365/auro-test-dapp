@@ -26,13 +26,10 @@ export class Add extends SmartContract {
         super.init();
         this.num.set(Field(1));
     }
-    async update() {
-        const currentState = this.num.getAndRequireEquals();
+    update() {
+        const currentState = this.num.getAndAssertEquals();
         const newState = currentState.add(2);
         this.num.set(newState);
-    }
-    async setValue(value) {
-        this.num.set(value);
     }
 }
 __decorate([
@@ -43,12 +40,6 @@ __decorate([
     method,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", void 0)
 ], Add.prototype, "update", null);
-__decorate([
-    method,
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Field]),
-    __metadata("design:returntype", Promise)
-], Add.prototype, "setValue", null);
 //# sourceMappingURL=Add.js.map
