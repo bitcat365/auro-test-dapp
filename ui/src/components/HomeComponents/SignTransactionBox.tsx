@@ -40,7 +40,7 @@ export const SignTransactionBox = ({
 }) => {
   const currentAccountTemp = "B62qr2zNMypNKXmzMYSVotChTBRfXzHRtshvbuEjAQZLq6aEa8RxLyD"
   const [gqlUrl,setGqlUrl] = useState("")
-  const [zkAddress, setZkAddress] = useState("");
+  const [zkAddress, setZkAddress] = useState("B62qpSvbc66k2ecSmdryPAUFCPQStHo4Vc8rxYU8K4LSGRSMVwxw6nk");
 
   const [fee, setFee] = useState("");
   const [memo, setMemo] = useState("");
@@ -51,6 +51,7 @@ export const SignTransactionBox = ({
   const [keys, setKeys] = useState({
     publicKey: "",
     privateKey: "",
+    status:""
   });
 
   const [displayText, setDisplayText] = useState("");
@@ -225,7 +226,8 @@ export const SignTransactionBox = ({
     setDisplayText("Requesting send transaction...");
     const transactionJSON = await state.zkappWorkerClient!.getTransactionJSON();
 
-    setDisplayText("Getting transaction JSON...");
+    // setDisplayText("Getting transaction JSON...");
+    setDisplayText("waiting wallet confirm");
     console.log("Getting transaction JSON...",transactionJSON);
     // const res: SendTransactionResult | ProviderError = await (
     //   window as any
@@ -342,6 +344,7 @@ export const SignTransactionBox = ({
     setKeys({
       publicKey: PublicKey.toBase58(zkAppAddress),
       privateKey: PrivateKey.toBase58(zkAppPrivateKey),
+      status:String(self?.crossOriginIsolated)
     });
   }, []);
   const onClickCreate = useCallback(async () => {
@@ -444,19 +447,19 @@ export const SignTransactionBox = ({
         type={InfoType.secondary}
       />
       <StyledDividedLine />
-      <Input placeholder="Set ZkApp Address" onChange={onChangeZkAddress} />
-      <StyledSwitchRow>
+      {/* <Input placeholder="Set ZkApp Address" onChange={onChangeZkAddress} /> */}
+      {/* <StyledSwitchRow>
         <StyledLeftName>{"sign in wallet, broadcast in zkApp"}</StyledLeftName>
         <Switch isChecked={isChecked} toggleSwitch={toggleSwitch} />
-      </StyledSwitchRow>
+      </StyledSwitchRow> */}
       {/* <Button checkInstall={false} disabled={initBtnStatus} onClick={onClickTest}>
         {"testZK"}
       </Button> */}
       <Button checkInstall={false} disabled={initBtnStatus} onClick={onClickInit}>
         {"Init ZkState"}
       </Button>
-      <Input placeholder="Set Fee (Option)" onChange={onChangeFee} />
-      <Input placeholder="Set memo (Option)" onChange={onChangeMemo} />
+      {/* <Input placeholder="Set Fee (Option)" onChange={onChangeFee} /> */}
+      {/* <Input placeholder="Set memo (Option)" onChange={onChangeMemo} /> */}
       {isChecked ? (
         <StyledButtonGroup>
           <Button checkInstall={false} disabled={updateBtnStatus} onClick={onClickBuilTx}>

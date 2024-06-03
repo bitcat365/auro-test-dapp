@@ -121,11 +121,11 @@ export default function Home() {
           data-rh="true"
         />
       </Head>
-      <header>
+      {/* <header>
         <StyledPageTitle>AURO E2E Test zkApp</StyledPageTitle>
-      </header>
+      </header> */}
       <GithubCorner />
-      <StyledRowSection>
+      {/* <StyledRowSection>
         <StyledRowTitle>Status</StyledRowTitle>
         <Container>
           <StyledStatusRowWrapper>
@@ -141,19 +141,19 @@ export default function Home() {
             />
           </StyledStatusRowWrapper>
         </Container>
-      </StyledRowSection>
-      <Container>
+      </StyledRowSection> */}
+      {/* <Container>
         <BaseActionBox currentAccount={currentAccount} onSetCurrentAccount={onSetCurrentAccount}/>
         <SwitchChainBox network={currentNetwork} />
-      </Container>
-      <Container>
+      </Container> */}
+      {/* <Container>
         <MinaSendBox />
         <StakingBox />
-      </Container>
+      </Container> */}
       <Container>
         <SignTransactionBox currentAccount={currentAccount} />
       </Container>
-      <Container>
+      {/* <Container>
         <CreateNullifierBox />
         <SignMessageBox currentAccount={currentAccount} />
         <SignTypeMessageBox
@@ -161,7 +161,7 @@ export default function Home() {
           network={currentNetwork}
         />
         <SignFieldsBox currentAccount={currentAccount} />
-      </Container>
+      </Container> */}
     </PageContainer>
     <VersionBox/>
     </StyledComponentsRegistry>
