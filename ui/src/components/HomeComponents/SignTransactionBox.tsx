@@ -445,8 +445,8 @@ export const SignTransactionBox = ({
   return (
     <Box>
       <StyledBoxTitle>Mina zkApp</StyledBoxTitle>
-      * need input url and generate Key first
-      <Input placeholder="Input Graphql Url" onChange={onChangeGqlUrl} />
+      {/* * need input url and generate Key first */}
+      {/* <Input placeholder="Input Graphql Url" onChange={onChangeGqlUrl} /> */}
       <StyledDividedLine />
       <Button checkInstall={false} onClick={onClickCreateKey}>Generate Zk-Contract-Key</Button>
       <InfoRow title={"zkApp keys"} type={InfoType.secondary}>
