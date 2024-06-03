@@ -14,6 +14,7 @@ import { Button } from "../Button";
 import { InfoRow, InfoType } from "../InfoRow";
 import { Input } from "../Input";
 import Switch from "../Switch";
+import { useRouter } from "next/router";
 
 const StyledButtonGroup = styled.div`
   display: flex;
@@ -38,8 +39,21 @@ export const SignTransactionBox = ({
 }: {
   currentAccount: string;
 }) => {
-  const currentAccountTemp = "B62qr2zNMypNKXmzMYSVotChTBRfXzHRtshvbuEjAQZLq6aEa8RxLyD"
+
   const [gqlUrl,setGqlUrl] = useState("")
+
+  const router = useRouter();
+  const { nextGqlUrl } = router.query;
+
+  useEffect(() => {
+    if (nextGqlUrl) {
+      console.log(`Received URL parameter: ${nextGqlUrl}`);
+      setGqlUrl(nextGqlUrl as string)
+      // console.log(`Received URL parameter =1: ${nextGqlUrl}`);
+      // You can use the nextGqlUrl value here
+    }
+  }, [nextGqlUrl]);
+  const currentAccountTemp = "B62qr2zNMypNKXmzMYSVotChTBRfXzHRtshvbuEjAQZLq6aEa8RxLyD"
   const [zkAddress, setZkAddress] = useState("B62qpSvbc66k2ecSmdryPAUFCPQStHo4Vc8rxYU8K4LSGRSMVwxw6nk");
 
   const [fee, setFee] = useState("");
@@ -436,7 +450,7 @@ export const SignTransactionBox = ({
       <StyledDividedLine />
       <Button checkInstall={false} onClick={onClickCreateKey}>Generate Zk-Contract-Key</Button>
       <InfoRow title={"zkApp keys"} type={InfoType.secondary}>
-        {keysContent && <div>{keysContent}</div>}
+        {keysContent && <div>{keysContent + gqlUrl}</div>}
       </InfoRow>
       <Button checkInstall={false} disabled={createBtnStatus} onClick={onClickCreate}>
         Create Zk-Contract
